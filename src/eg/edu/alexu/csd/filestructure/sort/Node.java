@@ -15,13 +15,14 @@ public class Node <T extends Comparable<T>> implements INode<T> {
 	@Override
 	public INode<T> getLeftChild() {
 		// TODO Auto-generated method stub
-		
+		if((2*index+1)>=arr.length)return null;
 		return arr[2*index+1];
 	}
 
 	@Override
 	public INode<T> getRightChild() {
 		// TODO Auto-generated method stub
+        if((2*index+2)>=arr.length)return null;
 		return arr[2*index+2];
 	}
 

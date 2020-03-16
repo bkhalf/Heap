@@ -7,7 +7,24 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
 	@Override
 	public IHeap<T> heapSort(ArrayList<T> unordered) {
 		// TODO Auto-generated method stub
-		return null;
+
+		if(unordered==null||unordered.isEmpty())return new Heap<T>();
+		Heap<T> a = new Heap(unordered.size());
+
+		a.build(unordered);
+		for(int i=0;i<unordered.size()-1;i++) {
+			a.extract();
+		}
+		return a;
+	}
+	public void swap(INode<T> arr[],int k) {
+		for(int i = 0; i < k/2; i++)
+		{
+			T temp = arr[i].getValue();
+			arr[i].setValue(arr[k-i-1].getValue());
+			arr[k-i-1] .setValue(temp);
+
+		}
 	}
 
 	public void sortSlow(ArrayList<T> unordered) {

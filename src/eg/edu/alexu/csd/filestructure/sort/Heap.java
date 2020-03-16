@@ -1,5 +1,6 @@
 package eg.edu.alexu.csd.filestructure.sort;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -10,10 +11,20 @@ public class Heap <T extends Comparable<T>> implements IHeap<T> {
 	int sizeArray;
 	boolean max=false;
 	int sizeHeap;
+
+	Heap(int k){
+		sizeArray=k;
+		arr=new INode[sizeArray];
+
+		sizeHeap=0;
+
+	}
 	Heap(){
 		sizeArray=1000000;
 		arr=new INode[sizeArray];
+
 		sizeHeap=0;
+
 	}
 
 	@Override
@@ -90,6 +101,7 @@ public class Heap <T extends Comparable<T>> implements IHeap<T> {
 		if(sizeHeap==0)return null;
 		T node=  arr[0].getValue();
 		arr[0].setValue(arr[sizeHeap-1].getValue());
+		arr[sizeHeap-1].setValue(node);
 		sizeHeap--;
 		heapify(arr[0]);
 		return (T) node;
@@ -99,6 +111,7 @@ public class Heap <T extends Comparable<T>> implements IHeap<T> {
 	public void insert(T element) {
 		if(element==null)return;
 		if(sizeArray==sizeHeap) {
+			System.out.println("HEre");
 			arr=Arrays.copyOf(arr, sizeArray*2);
 			sizeArray*=2;
 		}
@@ -107,10 +120,10 @@ public class Heap <T extends Comparable<T>> implements IHeap<T> {
 		sizeHeap++;
 		max=false;
 		heapify(arr[sizeHeap-1]);
-		for(int i=0;i<sizeHeap;i++){
+//		for(int i=0;i<sizeHeap;i++){
 //			System.out.print(arr[i].getValue() + " ");
 
-		}
+//		}
 //		System.out.println("-------------------");
 	}
 	@Override
